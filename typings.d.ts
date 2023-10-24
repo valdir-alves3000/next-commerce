@@ -11,5 +11,7 @@ declare namespace NodeJS {
     POSTGRES_HOST: string
     POSTGRES_PASSWORD: string
     POSTGRES_DATABASE: string
+    STRIP_SECRET_KEY: string
+    NEXT_PUBLIC_STRIP_PUBLISHABLE_KEY: string
   }
 }
