@@ -39,14 +39,14 @@ export function CartDrawer() {
                 {formatPrice(item.price)}
               </p>
               <button
-                className="py-1 px-2 border rounded-md mt-2 text-sm mr-1"
+                className="py-1 px-2 border rounded-md mt-2 text-sm mr-1 hover:bg-teal-600 hover:border-teal-600"
                 onClick={() => {}}
               >
                 Adicionar
               </button>
               <button
                 onClick={() => {}}
-                className="py-1 px-2 border rounded-md mt-2 text-sm"
+                className="py-1 px-2 border rounded-md mt-2 text-sm hover:bg-red-500/25 hover:border-red-500/25"
               >
                 Remover
               </button>
