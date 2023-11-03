@@ -2,10 +2,12 @@
 
 import { stripe } from '@/lib/stripe';
 
-export async function fetchProducts() {
-  const products = await stripe.products.list();
+export async function fetchProducts({ lastProductId }: { lastProductId?: string | undefined }) {
+  const params = lastProductId ? { starting_after: lastProductId, limit: 12 } : { limit: 12 }
+
+  const { data: products, has_more } = await stripe.products.list(params);
   const formatedProducts = await Promise.all(
-    products.data.map(async (product) => {
+    products.map(async (product) => {
       const price = await stripe.prices.list({
         product: product.id,
       });
@@ -21,5 +23,5 @@ export async function fetchProducts() {
     })
   );
 
-  return formatedProducts;
+  return { formatedProducts, has_more };
 }
