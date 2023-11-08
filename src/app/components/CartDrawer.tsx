@@ -1,15 +1,13 @@
 "use client";
 import { Checkout } from "@/app/components/Checkout";
 import { CheckoutButton } from "@/app/components/CheckoutButton";
-import { formatPrice } from "@/lib/utils";
+import { calculateOrderAmount, formatPrice } from "@/lib/utils";
 import { useCartStore } from "@/store";
 import Image from "next/image";
 
 export function CartDrawer() {
   const useStore = useCartStore();
-  const totalPrice = useStore.cart.reduce((acc, item) => {
-    return acc + item.price! * item.quantity!;
-  }, 0);
+  const totalPrice = calculateOrderAmount(useStore.cart);
 
   return (
     <div

@@ -1,8 +1,8 @@
 import { prisma } from "@/lib/prisma"
+import { stripe } from "@/lib/stripe"
 import { IncomingHttpHeaders } from "http"
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
-import Stripe from "stripe"
 import { Webhook, WebhookRequiredHeaders } from 'svix'
 
 const webhookSecret = process.env.CLERK_WEBHOOK_SECRET || "";
@@ -61,9 +61,6 @@ async function handler(request: Request) {
       ...attributes
     } = evt.data;
 
-    const stripe = new Stripe(process.env.STRIP_SECRET_KEY!, {
-      apiVersion: "2023-10-16"
-    })
 
     const customer = await stripe.customers.create({
       name: `${first_name} ${last_name}`,

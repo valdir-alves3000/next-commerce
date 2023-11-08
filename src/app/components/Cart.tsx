@@ -39,7 +39,7 @@ export function Cart() {
           {useStore.cart?.length}
         </span>
       </div>
-      {!useStore.isOpen && <CartDrawer />}
+      {useStore.isOpen && <CartDrawer />}
     </>
   );
 }
