@@ -7,9 +7,10 @@ type CardState = {
   addProduct: (product: ProductType) => void;
   removeProduct: (product: ProductType) => void;
   isOpen: boolean;
-  toggleCart: () => void
-  onCheckout: 'cart' | 'checkout';
-  setCheckout: (checkout: 'cart' | 'checkout') => void;
+  toggleCart: () => void;
+  clearCart: () => void;
+  onCheckout: 'cart' | 'checkout' | 'success';
+  setCheckout: (checkout: 'cart' | 'checkout' | 'success') => void;
   paymentIntent: string,
   setPaymentIntent: (paymentIntent: string) => void;
 }
@@ -56,6 +57,7 @@ export const useCartStore = create<CardState>()(
       setCheckout: (checkout) => set({ onCheckout: checkout }),
       paymentIntent: "",
       setPaymentIntent: (paymentIntent) => set(() => ({ paymentIntent })),
+      clearCart: () => set(() => ({ cart: [] })),
     }),
     { name: "cart-storage" }
   )
